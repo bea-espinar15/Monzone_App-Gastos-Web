@@ -1,0 +1,119 @@
+/* ------------ General ------------ */
+
+.rounded-corners {
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.separator {
+    margin-top: 2vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+.separator2 {
+    padding-top: 3vh;
+}
+
+.separator3 {
+    margin-top: 3vh;
+}
+
+.groups {
+    max-height: 15vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.groups.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
+#btn-save {
+    border-style: none;
+    outline: none;
+    max-width: 50%;
+    background-color: #d19900;
+    margin-bottom: 2vh;
+}
+
+#btn-savePassword {
+    border-style: none;
+    outline: none;
+    background-color: #d19900;
+    width: 50%;
+}
+
+#img-profile {
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+    margin-left: 3%;
+    object-fit: cover; 
+}
+
+.file {
+    visibility: hidden;
+    position: absolute;
+}
+
+.amount {
+    text-align: center;
+}
+
+#date {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+    height: 5vh;
+}
+
+#currMonth {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+
+#total-exp {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    display: flex;
+    height: 5vh;
+    color: black;
+}
+
+#btn-logout {
+    border-style: none;
+    outline: none;
+    background-color: #610000;
+    margin-left: 10%;
+}
+
+#btn-delete {
+    border-style: none;
+    outline: none;
+    background-color: #610000;
+    margin-left: 10%;
+}
+
+.card {
+    background-color: var(--bs-orange);
+    margin-top: 2%; 
+    margin-bottom: 2%; 
+}
+
+.groupName{
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}

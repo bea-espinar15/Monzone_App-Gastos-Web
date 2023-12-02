@@ -1,0 +1,88 @@
+/* ------------ General ------------ */
+
+.rounded-corners {
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+/* ------------ COL-1 ------------ */
+
+#desc {
+    resize: none;
+    height: 100%;
+}
+
+/* ------------ COL-2 ------------ */
+
+#for-whom ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+.check-box:checked {
+    background-color: #d19900;
+    border-color: #886402;
+}
+
+.split {
+    float: right;
+    margin-right: 25px;
+}
+
+/* ------------ COL-3 ------------ */
+
+.file {
+    visibility: hidden;
+    position: absolute;
+}
+
+#imgBtn {
+    min-width: 320px;
+    min-height: auto;
+    max-width: 320px;
+    max-height: 43vh;
+    border-radius: 8px;
+    margin-top: 2vh;
+    margin-left: 3%;
+}
+
+#btn-save {
+    border-style: none;
+    outline: none;
+    width: 30%;
+    background-color: #d19900;
+    float: left;
+    margin-left: 15px;
+}
+
+#btn-back {
+    border-style: none;
+    outline: none;
+    width: 30%;
+    background-color: #d19900;
+    float: left;
+}
+
+#btn-delete {
+    border-style: none;
+    outline: none;
+    width: 30%;
+    background-color: #610000;
+    margin-left: 10%;
+}
+
+#imgFileInput {
+    display: none;
+}
+
+.btn-return {
+    border-style: none;
+    outline: none;
+    width: 30%;
+    background-color: #d19900;
+}
+
+.btn-return:hover {
+    background-color: #b68500;
+}

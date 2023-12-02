@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <th:block th:replace="fragments/head :: header" />
+  <title>Monzone - Expense</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/expense.css}" href="css/expense.css" type="text/css" />
+</head>
+
+<body class="d-flex flex-column h-100">
+  <header th:replace="fragments/nav.html :: nav"></header>
+
+  <div class="container justify-content-center my-4">
+    <form id="expenseForm" method="post" th:action="@{/group/{groupId}/{action}(groupId=${groupId}, action=${expense != null} ? ${expense?.getId()} : 'new')}">
+      <div class="row">
+        <h1 th:if="${newExpense}">New Expense</h1>
+        <h1 th:unless="${newExpense}">Edit Expense</h1>
+      </div>
+      <div class="row row-cols-1 row-cols-lg-3 gx-3 pt-2">
+        <!-- Basic Info -->
+        <div class="col">
+          <div>
+            <label for="name" class="form-label w-100">Name</label>
+            <input id="name" name="name" type="text" class="rounded-corners mb-4 w-100" required="required" th:value="${expense?.getName()}">
+            <label for="desc" class="form-label w-100">Description (optional)</label>
+            <textarea id="desc" name="desc" class="rounded-corners form-control" rows="5">[[${expense?.getDesc()}]]</textarea>
+            <label for="date" class="form-label mt-4 w-100">Date</label>
+            <input id="dateString" type="date" name="dateString" class="rounded-corners w-100" required="required" th:value="${expense?.getDate()}">
+            <label for="amount" class="form-label mt-4 w-100">Amount ([[${group.getCurrencyText()}]])</label>
+            <input id="amount" name="amount" type="text" class="rounded-corners mb-4 w-100" required="required" th:value="${expense?.getAmount()}">
+
+            <button type="button" id="btn-back" th:onclick="|location.href='/group/' + ${group?.getId()}|" class="btn btn-primary btn-return rounded-pill fw-bold mt-2"><i class="fa fa-arrow-left fa-lg"></i></button>                    
+          </div>
+        </div>
+        <!-- Advanced info -->
+        <div id="middle-col" class="col">
+          <!-- Dropdown paidby -->
+          <label for="paidby" class="form-label w-100">Paid by</label>
+          <select id="paidById" class="form-select rounded-corners" name="paidById" required>
+            <option th:unless="${expense != null}" selected disabled hidden value="">Select Payer</option>
+            <div th:each="member: ${members}">
+              <th:block th:if="${member.isEnabled()}" th:with="user=${member.getUser()}">
+                <option th:value="${user.getId()}" th:selected="${expense?.getPaidBy()?.getId() == user.getId()}? true : false">[[${session.u.id == user.getId() ? "You" : user.getName()}]]</option>
+              </th:block>
+            </div>
+          </select>
+          <!-- Dropdown type -->
+          <label class="form-label mt-3 w-100">Type</label>
+          <select id="typeId" class="form-select rounded-corners" name="typeId" required>
+            <option th:unless="${expense != null}" selected disabled hidden value="">Select Type</option>
+            <div th:each="type: ${types}">
+              <option th:value="${type.getId()}" th:selected="${expense?.getType()?.getId() == type.getId()}? true : false">[[${type.getName()}]]</option>
+            </div>
+          </select>
+          <!-- List "for whom" -->
+          <label for="for-whom" class="form-label mt-3 w-100">For whom</label>
+          <div id="for-whom" class="border border-white rounded-corners">
+            <ul class="mt-3 mb-3">
+              <div th:each="member: ${members}">
+                <th:block th:if="${member.isEnabled()}" th:with="user=${member.getUser()}">
+                  <li>
+                    <div class="form-check">
+                      <input class="check-box form-check-input participateCheckbox" type="checkbox" name="participateIds" th:value="${user.getId()}" th:checked="${participateIds != null ? participateIds.contains(user?.getId()) ? true : false : true}">
+                      <label class="form-check-label" for="flexCheckDefault">[[${session.u.id == user.getId() ? "You" : user.getName()}]]</label>
+                      <label class="split amountPerMember">[[${expense != null ? participateIds.contains(user?.getId()) ? expense?.getAmount() / participateIds?.size() : '' : ''}]]</label>
+                    </div>
+                  </li>
+                </th:block>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <!-- Image Col -->
+        <div id="right-col" class="col">
+          <div class="row">
+            <label for="picture" class="form-label w-100">Picture (optional)</label>
+          </div>
+          <div class="row">
+            <input id="imgFileInput" type="file" class="file" accept="image/*">
+            <img id="imgBtn" th:src="@{/group/{groupId}/{expenseId}/pic(groupId=${groupId}, expenseId=${expense}?${expense.getId()}:0)}" class="border border-secondary ms-2 p-2" role="button">
+          </div>
+          <!-- Submit button -->
+          <div class="row mt-3">
+            <button type="submit" id="btn-save" th:formaction="@{/group/{groupId}/{action}(groupId=${groupId}, action=${expense == null} ? 'newExpense' : ${expense?.getId()} + '/updateExpense')}" th:data-notification-url="@{/group/{groupId}/notify(groupId=${groupId})}" class="btn btn-primary rounded-pill fw-bold mt-2">Save</button>
+            <button type="button" th:if="${expense != null}" id="btn-delete" class="btn btn-primary rounded-pill fw-bold mt-2" data-bs-toggle="modal" data-bs-target="#confirmModal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Confirm Modal -->
+  <th:block th:if="${expense} != null">
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirmModalLabel">Monzone</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this expense?
+          </div>
+          <div class="modal-footer">
+            <button id="modalCancelBtn" type="button" class="btn btn-secondary btn-delete" data-bs-dismiss="modal">Cancel</button>
+            <button id="confirmBtn" type="submit" th:formaction="@{/group/{groupId}/{expenseId}/delExpense(groupId=${groupId}, expenseId=${expense.getId()})}" class="btn btn-func btn-primary" data-bs-dismiss="modal">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </th:block>
+
+  <th:block th:replace="fragments/footer.html :: footer" />
+  <script th:src="@{/js/expense.js}" src="/js/expense.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Monzone: Error</title>
+    <th:block th:replace="fragments/head :: header" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="main d-flex flex-column mt-4 ms-4">
+            <h1 class="text-left">Error</h1>
+            <p class="text-left" th:text="${errorMessage}">Error message here</p>
+        </div>
+    </div>
+</body>
+
+</html>

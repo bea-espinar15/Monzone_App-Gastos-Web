@@ -1,0 +1,73 @@
+#group-col {
+    border-right: 2px solid gray;
+}
+
+.form-control {
+    background-color: var(--bs-gray-600);
+}
+
+.form-control::placeholder {
+    color: var(--bs-gray-400);
+}
+
+.form-control:focus {
+    background-color: var(--bs-gray-600);
+    color: var(--bs-gray-400);
+}
+
+#search-group {
+    width: 50%;
+}
+
+.search-button {
+    background-color: var(--bs-gray-500);
+}
+
+#groupsTable {
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#usersList {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.card {
+    border-left: 15px solid var(--bs-yellow);
+    color: black;
+    padding: 0;
+    box-shadow: 0 2px 8px #1a1a1b;
+    max-width: 55vh;
+}
+
+.card-text-row {
+    text-align: center !important;
+}
+
+@media (min-width: 768px) {
+    .card-text-row {
+        text-align: left !important;
+    }
+}
+
+.card-title {
+    float: left;
+    padding-top: 3px;
+}
+
+.card-subtitle {
+    font-size:small;
+    padding-bottom: 3px;
+}
+
+.img-profile {
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 8px;
+    object-fit: cover; 
+}

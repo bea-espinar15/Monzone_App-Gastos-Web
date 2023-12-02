@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:replace="fragments/head :: header" />
+    <title>Monzone - ADMIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/admin.css}" href="css/admin.css" type="text/css" />
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="container-fluid my-4 px-5">
+        <div class="row">
+            <!-- GROUPS -->
+            <div id="group-col" class="col-lg-8 px-4">
+                <!-- Row title and search -->
+                <div class="row">
+                    <div class="col">
+                        <h1>Groups</h1>
+                    </div>
+                    <div class="col my-2 d-flex justify-content-end">
+                        <div id="search-group" class="input-group rounded">
+                            <input id="searchGroupInput" type="search" class="form-control rounded" placeholder="Search by ID..." aria-label="Search" aria-describedby="search-addon" />
+                            <span  id="searchGroupBtn" class="search-button input-group-text border-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>                    
+                </div> 
+                <!-- Row users -->
+                <div class="row">
+                    <div class="col">
+                        <div id="groupsTable" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-5 align-items-center my-3">
+                            <!-- Tabla de grupos JS -->
+                            <p id="noGroupsFoundMsg" class="d-none">No groups found.</p>
+                        </div>
+                    </div>                         
+                </div>
+            </div>
+            <!-- USERS -->
+            <div class="col-lg-4 py-2 px-4">
+                <!-- Row title -->
+                <div class="row">
+                    <h1>Users</h1>
+                </div> 
+                 <!-- Row search -->
+                <div class="row mt-3 mb-4">
+                    <div class="input-group rounded">
+                        <input id="searchUserInput" type="search" class="form-control rounded" placeholder="Search by ID or username..." aria-label="Search" aria-describedby="search-addon" />
+                        <span id="searchUserBtn" class="search-button input-group-text border-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </span>
+                      </div>
+                </div>  
+                 <!-- Row users -->
+                <div class="row mx-1">
+                    <div id="usersList" class ="row">
+                        <!-- Lista de usuarios JS -->
+                        <p id="noUsersFoundMsg" class="d-none">No users found.</p>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+    <script th:src="@{/js/admin.js}"></script>
+</body>
+
+</html>

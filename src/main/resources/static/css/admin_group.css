@@ -1,0 +1,137 @@
+/* ------------ Campos texto ------------ */
+
+.text-field {
+    height: 35px;
+    width: 100%;
+}
+
+.rounded-corners {
+    border-radius: 8px;
+    padding-left: 10px;
+    background-color: white;
+}
+
+#desc {
+    resize: none;
+    width: 100%;
+}
+
+#currency {
+    background-color: white;
+    color: black;
+}
+
+/* ------------ General ------------ */
+
+#left-col {
+    border-right: 2px solid gray;
+}
+
+.area-list {
+    border-radius: 8px;
+    max-height: 35vh;
+    margin-top: 7px;
+    margin-left: 10px;
+    overflow-y: auto;
+}
+
+.debts-list {
+    border-radius: 8px;
+    max-height: 23vh;
+    margin-top: 7px;
+    margin-left: 10px;
+    overflow-y: auto;
+}
+
+#btn-back {
+    border-style: none;
+    outline: none;
+    width: 40%;
+    background-color: var(--bs-brown);
+}
+
+#btn-back:hover {
+    background-color: #865e0c;
+}
+
+/* ------------ Expenses ------------ */
+
+.card {
+    text-align: center;
+    background-color: var(--bs-orange);
+    box-shadow: 0 2px 8px #1a1a1b;
+}
+
+.icon {
+    filter: invert(1);
+    width: 30%;
+    height: auto;
+}
+
+.icon-card {
+    background-color: var(--bs-yellow);
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.card-title {
+    float: left;
+    padding-top: 1vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.card-subtitle {
+    font-size:small;
+    padding-bottom: 1vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* ------------ Members ------------ */
+
+.member-card {
+    color: black;
+    height: 4vh;
+    box-shadow: 0 2px 8px #1a1a1b;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.enabled {
+    background-color: white;
+    border-left: 15px solid var(--bs-yellow);
+}
+  
+.disabled {
+    background-color: var(--bs-gray-400);
+    border-left: 15px solid var(--bs-gray-600);
+}
+
+#balance {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 20px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    margin-right: 9px;
+}
+
+/* ------------ Debts ------------ */
+
+.debt-card {
+    color: black;
+    height: 5vh;
+    box-shadow: 0 2px 8px #1a1a1b;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    border: 4px solid var(--bs-orange);
+}

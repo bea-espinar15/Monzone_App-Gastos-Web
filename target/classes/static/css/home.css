@@ -1,0 +1,88 @@
+
+/* ------------ GENERAL ------------*/
+
+#groupsTable .card {
+    max-width: 20rem;
+    max-height: 15rem;
+    background-color: var(--bs-orange);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #1a1a1b;
+}   
+
+#groupsTable .card:hover {
+    background-color: var(--bs-brown);
+    transform: translateY(-8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.group-desc{
+    overflow: hidden; /* Oculta el texto que no cabe */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos al final del texto truncado */
+    white-space: nowrap; /* Evita que el texto se desborde */
+}
+
+/* ------------ CARD ------------*/
+
+.card-header h5 {
+    margin-top: 4px;
+    font-size: 120%;
+}
+
+.height{
+    height: 7vh;
+}
+
+.balance {
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: white;
+}
+
+.col-num-members {
+    width: 70%;
+}
+
+.icon {
+    width: 10%;
+    float: right;
+    margin-left: 9px;
+}
+
+.num-members{
+    float: right;
+    width: auto;
+    margin-left: 20%;
+}
+
+#indicator {
+    display: flex;
+    align-items: center;
+    max-width: 7%;
+    float: right;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 6px;;
+}
+
+/* ------------ ADD BUTTON ------------*/
+
+.btn-lg {
+    background-color: var(--bs-orange);
+    color: #2A2E34;
+    font-size: 2em;
+    width: 70px;
+    height: 70px;
+    box-shadow: 0 2px 8px #1a1a1b;
+}
+
+.btn-lg:hover {
+    background-color: var(--bs-brown);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px #1a1a1b;
+}

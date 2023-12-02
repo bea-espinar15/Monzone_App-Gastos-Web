@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Nav fragment - rest intentionally left empty</title>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <!-- barra de navegación bootstrap 5 -->
+    <header th:fragment="nav">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
+                <a class="navbar-brand" th:href="@{/user/}" href="/">
+                    <img th:src="@{/img/icon.png}" src="/img/icon.png" alt="icon Monzone" width="auto" height="50" class="d-inline-block align-text-top">
+                    <img th:src="@{/img/name.png}" src="/img/name.png" alt="name Monzone" width="auto" height="40" class="d-inline-block align-text-top mt-1">
+                </a>
+                <!-- menu hamburguesa si no cabe todo -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <th:block th:if="${session.u}">
+                            <!-- Admin button -->
+                            <li class="nav-item align-self-center mx-3">
+                                <a class="nav-link" id="btn-admin" th:if="${session.u.hasRole('ADMIN')}" th:href="@{/admin/}">
+                                    <button type="button" class="btn btn-outline-secondary">Admin</button>
+                                </a>
+                            </li>
+                            <!-- Notification Bell -->
+                            <li class="nav-item align-self-center me-4">
+                                <button id="notifB" type="button" class="btn btn-sm position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+                                    <svg id="bell" xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="bi bi-bell" viewBox="0 0 16 16">
+                                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                                    </svg>
+                                    <span id="nav-unread" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span class="visually-hidden">unread messages</span></span>
+                                </button>
+                            </li>
+                            <!-- Profile Dropdown Menu -->
+                            <li class="nav-item align-self-center dropdown">
+                                <a class="nav-link dropdown-toggle" id="btn-drop" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img id="nav-profile" th:src="@{/user/{id}/pic(id=${session.u.id})}" style="border-radius: 50%; object-fit: cover; width: 50px; height: 50px;" class="rounded-circle border border-secondary">
+                                </a>
+                                <ul id="dropMenu" class="dropdown-menu dropdown-menu-dark">
+                                    <!-- Profile Btn -->
+                                    <li>
+                                        <a id="profile" class="dropdown-item" th:href="@{/user/config}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <!-- Logout Btn -->
+                                    <li>
+                                        <form id="logoutForm" class="dropdown-item" th:action="@{/logout}" method="post">
+                                            <a role="button" id="btn-logout" type="submit" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Offcanvas Notifs Nav -->
+        <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+            <div class="offcanvas-header">
+                <ul class="nav nav-pills nav-justified" id="actionNotifsTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="action-notifs-tab" data-bs-toggle="tab" data-bs-target="#actionNotifs-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Invitations</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="notifs-tab" data-bs-toggle="tab" data-bs-target="#notifs-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Notifications</button>
+                    </li>
+                </ul>
+                <button type="button" id="btn-close" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="tab-content" id="notifsTabContent">
+                    <div class="tab-pane fade show active" id="actionNotifs-tab-pane" role="tabpanel" aria-labelledby="actionNotifs-tab" tabindex="0">
+
+                    </div>
+                    <div class="tab-pane fade" id="notifs-tab-pane" role="tabpanel" aria-labelledby="notifs-tab" tabindex="0">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>

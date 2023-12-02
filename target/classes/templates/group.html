@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <th:block th:replace="fragments/head :: header" />
+    <title>Monzone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/group.css}" href="css/group.css" type="text/css" />
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header th:replace="fragments/nav.html :: nav"></header>
+
+    <main class="container my-4">
+        <!-- Title -->
+        <div class="row mb-2">
+            <div class="col align-items-center d-flex justify-content-center">
+                <h3><strong>[[${group.getName()}]]</strong></h3>
+                <button id="groupConfigBtn" class="btn button_config btn-outline-warning" type="button" th:onclick="|location.href='/group/${groupId}/config'|"><i class="fa fa-cog fa-2x"></i></button>            
+            </div>
+        </div>
+        <div class="row">
+            <div class="col align-self-center text-center">
+                <h7>[[${group.getDesc()}]]</h7>
+            </div>            
+        </div>
+        <hr>
+
+        <!-- Body -->
+        <div class="body">
+            <!-- Tabs -->
+            <div class="row">
+                <div>
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="nav-tab" data-bs-toggle="pill" data-bs-target="#pills-expenses" type="button" role="tab" aria-controls="pills-expenses" aria-selected="true">Expenses</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="nav-tab" data-bs-toggle="pill" data-bs-target="#pills-balance" type="button" role="tab" aria-controls="pills-balance" aria-selected="false">Balance</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <!-- Contenido Tabs -->
+            <div id="pills-tabContent" class="tab-content pt-2">
+                <!-- Expenses -->
+                <div class="tab-pane fade show active" id="pills-expenses" role="tabpanel" aria-labelledby="pills-expenses-tab">
+                    <!-- CARTAS GASTOS -->
+                    <div id="expensesTable" th:data-userid="${userId}" th:data-groupid="${groupId}" th:data-currency="${group.getCurrencyText()}" class="row row-cols-1 row-cols-lg-2 mx-auto">
+                    </div>
+                      <!-- newExpenseBtn -->
+                    <div class="row text-center mx-auto">
+                        <div class="col align-self-center">
+                            <button id="addExpense" class="btn button-add-expense btn-outline-warning" type="button" th:onclick="|location.href='/group/${groupId}/new'|"><i class="fa fa-plus fa-2x"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Balance -->
+                <div class="tab-pane fade" id="pills-balance" role="tabpanel" aria-labelledby="pills-balance-tab">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h5>BALANCES</h5>
+                            <hr>
+                            <div id="balancesTable" class="colscroll overflow-auto">
+                            </div>
+                        </div>                            
+                        <div class="colscroll col-md-6">
+                            <!-- DEBTS -->
+                            <h5>DEBTS</h5>
+                            <hr>
+                            <div id="debtsTable" class="colscroll overflow-y-auto">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </main>
+
+    <th:block th:replace="fragments/footer.html :: footer" />
+    <script th:src="@{/js/group.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+/* usa este fichero para personalizar tus vistas */
+
+.iwthumb {
+    height: 32px;
+    width: 32px;
+}
+
+.errTable tr>td:first-child {
+    min-width: 200px;
+    max-width: 200px;
+    word-break: break-all;
+    font-weight: bold;
+    color: gray;
+}
+
+.errTable td {
+    vertical-align: top;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+img.preview {
+    object-fit: cover;
+    width: 10%;
+    height: 100px;
+    border-radius: 10px;
+}
+
+/* Nav Customization */
+
+#bell {
+    fill: #fed053;
+}
+
+#bell:hover {
+    fill: #bb911f;
+}
+
+#dropMenu {
+    position: absolute;
+    top: 55px;
+    left: auto;
+    right: 5px;
+    background-color: #565e69;
+}
+
+.dropdown-item a {
+    display: inline-block;
+    min-width: 100%;
+}
+
+.nav-link {
+    color: #f5a302;
+}
+
+.nav-link:hover {
+    color: #bb911f;
+}
+
+#actionNotifsTab .nav-link.active {
+    color: white;
+    background-color: var(--bs-orange);
+}
+
+#notifsTab {
+    width: 85%;
+}
+
+#notifsTabContent .card {
+    background-color: #2A2E34;
+}
+
+/* Nav customization end */
+
+
+/* All buttons */
+
+.btn-func {
+    border-style: none;
+    outline: none;
+    min-height: 10%;
+    background-color: #d19900;
+    float: left;
+    margin-left: 15px;
+}
+
+.btn-func:hover {
+    background-color: #b68500;
+}
+
+.btn-delete {
+    border-style: none;
+    outline: none;
+    min-height: 10%;
+    background-color: #610000;
+    margin-left: 10%;
+}
+
+.btn-delete:hover {
+    background-color: #460101;
+}
+
+.btn-return {
+    border-style: none;
+    outline: none;
+    width: 25%;
+    background-color: #d19900;
+    margin-left: 10%;
+}
+
+
+.btn-return:hover {
+    background-color: #b68500;
+}
